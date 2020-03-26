@@ -31,16 +31,15 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'django_mongoengine',
+    'django_mongoengine.mongo_auth',
+    'django_mongoengine.mongo_admin',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-
-    'django_mongoengine',
-    'django_mongoengine.mongo_auth',
-    'django_mongoengine.mongo_admin',
     'hrm',
     'rest_framework'
 ]
@@ -75,7 +74,7 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'mongoengine_test.wsgi.application'
 
-
+MONGOADMIN_OVERRIDE_ADMIN = True
 # Database
 # https://docs.djangoproject.com/en/2.2/ref/settings/#databases
 
@@ -128,5 +127,6 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/2.2/howto/static-files/
 
 STATIC_URL = '/static/'
-SESSION_ENGINE = 'django_mongoengine.sessions'
-SESSION_SERIALIZER = 'django_mongoengine.sessions.BSONSerializer'
+
+# SESSION_ENGINE = 'django_mongoengine.sessions'
+# SESSION_SERIALIZER = 'django_mongoengine.sessions.BSONSerializer'

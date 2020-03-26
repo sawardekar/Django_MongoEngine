@@ -1,6 +1,7 @@
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
+from bson import ObjectId
 from django.http import Http404
 from hrm.models import Employee
 from hrm.serializers import EmployeeSerializer
@@ -10,12 +11,14 @@ class EmployeeDetail(APIView):
 
     def get_object(self, pk):
         try:
+            pk = ObjectId(pk)
             return Employee.objects.get(pk=pk)
         except Employee.DoesNotExist:
             raise Http404
 
     def get(self, request, pk=None):
         if pk:
+            pk = ObjectId(pk)
             employee = self.get_object(pk)
             serializer = EmployeeSerializer(employee)
         else:
@@ -31,6 +34,7 @@ class EmployeeDetail(APIView):
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
     def put(self, request, pk):
+        pk = ObjectId(pk)
         employee = self.get_object(pk)
         serializer = EmployeeSerializer(employee, data=request.data)
         if serializer.is_valid():
@@ -39,6 +43,7 @@ class EmployeeDetail(APIView):
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
     def delete(self, request, pk):
+        pk = ObjectId(pk)
         employee = self.get_object(pk)
         employee.delete()
         return Response(status=status.HTTP_204_NO_CONTENT)
