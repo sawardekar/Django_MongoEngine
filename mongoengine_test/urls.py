@@ -14,11 +14,18 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-admin.autodiscover()
+from django.conf import settings
+from django.conf.urls.static import static
 from django.urls import path, include
-from django_mongoengine.mongo_admin import site
+from django_mongoengine import mongo_admin
+# mongo_admin.autodiscover()
 
 urlpatterns = [
-    path('admin/', site.urls),
-    path('', include('hrm.urls'))
+    path('admin/', admin.site.urls),
+    path('', include('hrm.urls')),
+    path('mongoadmin/', mongo_admin.site.urls),
 ]
+
+# let django built-in server serve static and media content
+urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

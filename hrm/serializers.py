@@ -1,4 +1,4 @@
-from rest_framework_mongoengine import serializers
+from rest_framework_mongoengine import serializers, fields as field
 from rest_framework import fields
 from hrm.models import Employee, Designation, Department
 
@@ -17,6 +17,7 @@ class EmployeeSerializer(serializers.DocumentSerializer):
     username = fields.CharField(required=False)
     email = fields.EmailField(required=False)
     emp_id = fields.IntegerField(required=False)
+    file = field.ObjectIdField(required=False)
 
     class Meta:
         model = Employee
@@ -25,6 +26,7 @@ class EmployeeSerializer(serializers.DocumentSerializer):
 
 class DepartmentSerializer(serializers.DocumentSerializer):
     name = fields.CharField(required=True)
+    # file = field.ObjectIdField(required=False)
 
     class Meta:
         model = Department

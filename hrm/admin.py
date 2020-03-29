@@ -5,7 +5,8 @@ from hrm.models import Employee, Department
 
 
 class EmployeeAdmin(admin.DocumentAdmin):
-    pass
+    model = Employee
+    fields = ('name', 'username')
 
 
 admin.site.register(Employee, EmployeeAdmin)

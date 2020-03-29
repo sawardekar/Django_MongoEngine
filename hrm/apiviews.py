@@ -1,5 +1,7 @@
 from rest_framework.views import APIView
 from rest_framework.response import Response
+from rest_framework.exceptions import ParseError
+from rest_framework.parsers import FileUploadParser
 from rest_framework import status
 from bson import ObjectId
 from django.http import Http404
@@ -8,6 +10,7 @@ from hrm.serializers import EmployeeSerializer
 
 
 class EmployeeDetail(APIView):
+    parser_class = (FileUploadParser,)
 
     def get_object(self, pk):
         try:

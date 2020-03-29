@@ -14,6 +14,7 @@ class Employee(Document):
     email = fields.EmailField()
     emp_id = fields.IntField()
     designation = fields.EmbeddedDocumentField(Designation)
+    file = fields.FileField()
 
     def __str__(self):
         return self.name
@@ -25,6 +26,7 @@ class Employee(Document):
 
 class Department(Document):
     name = fields.StringField(required=True, max_length=250)
+    # file = fields.FileField()
 
     def __str__(self):
         return self.name
