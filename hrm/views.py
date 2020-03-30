@@ -18,6 +18,9 @@ class DepartmentViewSet(viewsets.ModelViewSet):
     def get_queryset(self):
         return Department.objects.all()
 
+    def pre_save(self, obj):
+        obj.file = self.request.FILES.get('file')
+
 
 
 

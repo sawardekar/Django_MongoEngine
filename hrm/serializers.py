@@ -17,7 +17,7 @@ class EmployeeSerializer(serializers.DocumentSerializer):
     username = fields.CharField(required=False)
     email = fields.EmailField(required=False)
     emp_id = fields.IntegerField(required=False)
-    file = field.ObjectIdField(required=False)
+    file = field.FileField(required=False)
 
     class Meta:
         model = Employee
@@ -26,11 +26,9 @@ class EmployeeSerializer(serializers.DocumentSerializer):
 
 class DepartmentSerializer(serializers.DocumentSerializer):
     name = fields.CharField(required=True)
-    # file = field.ObjectIdField(required=False)
+    file = field.FileField(required=False)
 
     class Meta:
         model = Department
         fields = '__all__'
 
-# list of mongoengine fields ref below link
-# https://github.com/umutbozkurt/django-rest-framework-mongoengine/blob/master/rest_framework_mongoengine/serializers.py

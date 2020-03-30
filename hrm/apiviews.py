@@ -50,13 +50,3 @@ class EmployeeDetail(APIView):
         employee = self.get_object(pk)
         employee.delete()
         return Response(status=status.HTTP_204_NO_CONTENT)
-
-# {
-#     "name": "sanket",
-#     "username": "sanket.sawardekar",
-#     "email": "sanket@gmail.com",
-#     "emp_id": 1003,
-#     "designation":{
-#         "name": "Programmer"
-#     }
-# }
